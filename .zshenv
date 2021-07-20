@@ -2,7 +2,6 @@
 source $HOME/.cargo/env
 
 # Path
-set-go-binary
 set-brew
 set-xilinx
 
