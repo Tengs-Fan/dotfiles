@@ -31,7 +31,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
 # Wallpaper
-exec --no-startup-id /home/linuxbrew/.linuxbrew/bin/feh --no-fehbg --randomize --bg-fill /home/frind/Pictures/*
+exec --no-startup-id feh --no-fehbg --randomize --bg-fill $HOME/Pictures/*
 #--no-fehbg --bg-fill '/home/frind/Pictures/crab.jpg'
 
 # Screenshot
