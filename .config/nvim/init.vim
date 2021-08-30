@@ -32,7 +32,7 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " F7: find which function called this function
 "----------------------------------------
 if has("cscope")
-	set csprg=/home/linuxbrew/.linuxbrew/bin/cscope
+	"set csprg=/home/linuxbrew/.linuxbrew/bin/cscope
 	set csto=1
 	set cst
 	set nocsverb
@@ -199,7 +199,7 @@ iabbrev /*!
 iabbrev /** 
 			\/**/
 			\<Left><Left>
-iabbrev #i #include <><Left>
+iabbrev #i #include ""<Left>
 iabbrev #d #define
 iabbrev #s struct
 iabbrev #t typedef
