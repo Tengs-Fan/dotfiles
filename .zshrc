@@ -1,27 +1,49 @@
+# ----- ----- Homebrew Setting ----- ----- #
+arch=$(uname -m)        
+case $arch in
+    arm*)               
+		set-arm-java
+		env-macports
+        export PATH="/usr/local/bin:$PATH"    
+        export PATH="/usr/local/sbin:$PATH"    
+        eval `/usr/libexec/path_helper -s`    
+        eval $(/opt/homebrew/bin/brew shellenv)    
+        ;;              
+    i?86|x86*|amd64)    
+		set-x64-java
+		env-macports
+        export PATH="/opt/homebrew/bin:$PATH"    
+        export PATH="/opt/homebrew/sbin:$PATH"    
+        eval `/usr/libexec/path_helper -s`    
+        eval $(/usr/local/Homebrew/bin/brew shellenv)    
+        ;;              
+esac
+
+alias abrew="arch -arm64 /opt/homebrew/bin/brew"  # ARM Homebrew
+alias ibrew="arch -x86_64 /usr/local/bin/brew" # X86 Homebrew
+
+# ----- ----- Path Settings ----- ----- #
+set-rust
+
 # Path to your oh-my-zsh installation.
-export ZSH="/home/frind/.oh-my-zsh"
+export ZSH="/Users/penkwe/.oh-my-zsh"
 
-# Alias
-source $HOME/.config/zsh/aliases
-
-export NEMU_HOME=/home/frind/Code/ics2020/nemu
-export AM_HOME=/home/frind/Code/ics2020/abstract-machine
-
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="kennethreitz"
-
-# Setting this variable when ZSH_THEME=random will cause zsh to load a theme from this variable instead of looking in $ZSH/themes/
+arch=$(uname -m)
+if [ $arch = "x86_64" ]
+then 
+	ZSH_THEME="random"
+fi
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
-
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 # DISABLE_UPDATE_PROMPT="true"
@@ -68,32 +90,69 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export EDITOR="nvim"
 
-# proxy clash
-#set-proxy
+export EDITOR='nvim'
 
-# History
-setopt HIST_FIND_NO_DUPS
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# History configurations
+setopt HIST_FIND_NO_DUPS	  # no duplications in history
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_space      # ignore commands that start with space
 
 # beeps
 unsetopt BEEP
+
 setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
+
+# Alias
+alias gtkwave="/Applications/gtkwave.app/Contents/Resources/bin/gtkwave"
+alias tree="tree -C"
+alias lisa="ls -lisa"
+alias lt="ls -lt"
+alias conv="iconv -f GBK -t UTF8"
+
+# Keybindings
+bindkey -e
+setopt extendedglob 		# Keybindings to help edit
+WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+
+# Override the existing widget that's bound to alt-backspace.
+#zle -N backward-kill-word
+#backward-kill-word() {
+#  if [[ $LBUFFER[-1] == [[:WORD:]] ]]; then
+#    # If there's a word char left of the cursor, use the old widget.
+#    zle .backward-kill-word
+#  else
+#    # Select all consecutive non-word chars left of the cursor.
+#    (( MARK = ${#LBUFFER%%[^[:WORD:]]##}  ))
+#    # Kill them. 
+#    zle .kill-region
+#  fi
+#}
+
+# Simple Scripts that can be functions
+. $HOME/.bin/func.sh
 
 # CommandLine Utilities
 eval "$(zoxide init zsh)"
 eval $(thefuck --alias)
 
-# Keybindings
-bindkey -e
-setopt extendedglob 		# Keybindings to help edit
-#WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'
-bindkey "^P" up-line-or-search
-bindkey "^N" down-line-or-search
+test -e /Users/penkwe/.iterm2_shell_integration.zsh && source /Users/penkwe/.iterm2_shell_integration.zsh || true
+
+
