@@ -21,11 +21,11 @@ function set-linuxbrew() {
 	export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}";
 }
 
-function set-xilinx() {
-	source /usr/local/Xilinx/Vivado/2020.2/.settings64-Vivado.sh
-	source /usr/local/Xilinx/DocNav/.settings64-DocNav.sh
-	source /usr/local/Xilinx/Vitis_HLS/2020.2/.settings64-Vitis_HLS.sh
-}
+#function set-xilinx() {
+#	source /usr/local/Xilinx/Vivado/2020.2/.settings64-Vivado.sh
+#	source /usr/local/Xilinx/DocNav/.settings64-DocNav.sh
+#	source /usr/local/Xilinx/Vitis_HLS/2020.2/.settings64-Vitis_HLS.sh
+#}
 
 function set-proxy() {
 	export http_proxy=http://127.0.0.1:7890/
