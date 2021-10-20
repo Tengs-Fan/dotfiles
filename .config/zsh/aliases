@@ -1,0 +1,8 @@
+alias config='/usr/bin/git --git-dir=/home/frind/.cfg/ --work-tree=/home/frind'
+alias tree="tree -C"
+alias lisa="ls -lisa"
+alias lt="ls -lt"
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias conv="iconv -f GBK -t UTF8"
