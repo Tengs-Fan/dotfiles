@@ -1,5 +1,6 @@
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias tree="tree -C"
+alias ls="ls --color=auto"
 alias lisa="ls -lisa --color=auto"
 alias lt="ls -lt --color=auto"
 alias ll='ls -alF --color=auto'

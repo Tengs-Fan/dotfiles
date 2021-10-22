@@ -1,14 +1,11 @@
-# Small Scripts
-. $HOME/.bin/func.sh
-
 # linuxbrew
 #eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 function set-brew() {
-	export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew";
-	export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar";
-	export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew";
+	export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+	export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
+	export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
 # already set in /etc/environment
-	export PATH="${PATH}:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin";
+	# export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin"
 # Let man do this, which may be better
 	# export MANPATH="/home/linuxbrew/.linuxbrew/share/man${MANPATH+:$MANPATH}:";
 	# export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}";
@@ -19,11 +16,11 @@ function set-brew() {
 }
 
 function set-linuxbrew() {
-	export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}";
+	export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH";
 }
 
 function set-cuda() {
-	export PATH="/opt/cuda/bin:${PATH}";
+	export PATH="/opt/cuda/bin:$PATH";
 	export LDFLAGS="-L/opt/cuda/lib64 /$LDFLAGS"
 	export CPPFLAGS="-I/opt/cuda/include $CPPFLAGS"
 	export CFLAGS="-I/opt/cuda/include $CFLAGS"
