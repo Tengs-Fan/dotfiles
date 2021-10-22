@@ -1,8 +1,8 @@
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias tree="tree -C"
-alias lisa="ls -lisa"
-alias lt="ls -lt"
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias lisa="ls -lisa --color=auto"
+alias lt="ls -lt --color=auto"
+alias ll='ls -alF --color=auto'
+alias la='ls -A --color=auto'
+alias l='ls -CF --color=auto'
 alias conv="iconv -f GBK -t UTF8"

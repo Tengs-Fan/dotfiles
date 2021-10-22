@@ -12,6 +12,9 @@ fi
 # Alias
 source $HOME/.config/zsh/aliases
 
+# 
+export TERM=kitty
+
 export NEMU_HOME=/home/frind/Code/ics2020/nemu
 export AM_HOME=/home/frind/Code/ics2020/abstract-machine
 
@@ -31,8 +34,11 @@ eval "$(zoxide init zsh)"
 eval $(thefuck --alias)
 
 # Keybindings
-# bindkey -e
+bindkey -e
 setopt extendedglob 		# Keybindings to help edit
 #WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
+#bindkey '^-' undo 		# ctrl + bar
+
+bindkey -s '^o' 'nvim $(fzf)^M'

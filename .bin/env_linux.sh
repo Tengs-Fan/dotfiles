@@ -9,8 +9,9 @@ function set-brew() {
 	export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew";
 # already set in /etc/environment
 	export PATH="${PATH}:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin";
-	export MANPATH="/home/linuxbrew/.linuxbrew/share/man${MANPATH+:$MANPATH}:";
-	export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}";
+# Let man do this, which may be better
+	# export MANPATH="/home/linuxbrew/.linuxbrew/share/man${MANPATH+:$MANPATH}:";
+	# export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}";
 
 	export LDFLAGS="-L/home/linuxbrew/.linuxbrew/lib $LDFLAGS"
 	export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/include $CPPFLAGS"
@@ -19,6 +20,13 @@ function set-brew() {
 
 function set-linuxbrew() {
 	export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}";
+}
+
+function set-cuda() {
+	export PATH="/opt/cuda/bin:${PATH}";
+	export LDFLAGS="-L/opt/cuda/lib64 /$LDFLAGS"
+	export CPPFLAGS="-I/opt/cuda/include $CPPFLAGS"
+	export CFLAGS="-I/opt/cuda/include $CFLAGS"
 }
 
 #function set-xilinx() {
