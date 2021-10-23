@@ -44,3 +44,4 @@ bindkey "^N" down-line-or-search
 #bindkey '^-' undo 		# ctrl + bar
 
 bindkey -s '^o' 'nvim $(fzf)^M'
+
