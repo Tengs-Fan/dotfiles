@@ -227,6 +227,9 @@ Plugin 'davidhalter/jedi-vim'
 
 Plugin 'neoclide/coc.nvim'
 
+" Code Annotation
+Plugin 'preservim/nerdcommenter'
+
 " File System
 Plugin 'The-NERD-tree'
 
