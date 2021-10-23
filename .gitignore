@@ -1,6 +1,7 @@
 .cfg
 .*_history
 .zsh_history
+.zhistory
 .vim
 
 .cache

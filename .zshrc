@@ -22,6 +22,7 @@ export AM_HOME=/home/frind/Code/ics2020/abstract-machine
 setopt HIST_FIND_NO_DUPS
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_space      # ignore commands that start with space
+setopt histignorealldups sharehistory
 
 # beeps
 unsetopt BEEP
@@ -37,6 +38,7 @@ eval $(thefuck --alias)
 bindkey -e
 setopt extendedglob 		# Keybindings to help edit
 #WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'
+WORDCHARS='-'
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 #bindkey '^-' undo 		# ctrl + bar
