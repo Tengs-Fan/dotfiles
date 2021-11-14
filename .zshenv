@@ -40,14 +40,14 @@ function set-rust(){
 
 function set-arm-java(){
 	export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-	export LDFLAGS="-I/opt/homebrew/opt/openjdk/lib:$LDFLAGS"
-	export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include:$CPPFLAGS"
+	export LDFLAGS="-I/opt/homebrew/opt/openjdk/lib $LDFLAGS"
+	export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include $CPPFLAGS"
 }
 
 function set-x64-java(){
 	export PATH="/usr/local/opt/openjdk/bin:$PATH"
-	export LDFLAGS="-I/usr/local/opt/openjdk/lib:$LDFLAGS"
-	export CPPFLAGS="-I/usr/local/opt/openjdk/include:$CPPFLAGS"
+	export LDFLAGS="-I/usr/local/opt/openjdk/lib $LDFLAGS"
+	export CPPFLAGS="-I/usr/local/opt/openjdk/include $CPPFLAGS"
 }
 
 function set-arm-flags(){
@@ -132,8 +132,8 @@ function set-mips-cross(){
 # ----- ----- Specific Appplication ----- ----- #
 function set-qt5() {
 	export PATH="/opt/homebrew/Cellar/qt@5/5.15.2/bin:$PATH"
-	export CPPFLAGS="/opt/homebrew/Cellar/qt@5/5.15.2/include:$CPPFLAGS"
-	export LDFLAGS="/opt/homebrew/Cellar/qt@5/5.15.2/lib:$LDFLAGS"
+	export CPPFLAGS="/opt/homebrew/Cellar/qt@5/5.15.2/include $CPPFLAGS"
+	export LDFLAGS="/opt/homebrew/Cellar/qt@5/5.15.2/lib $LDFLAGS"
 }
 
 function set-fuchsia(){
