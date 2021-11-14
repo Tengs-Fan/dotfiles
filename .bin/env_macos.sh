@@ -138,3 +138,25 @@ function set-fuchsia(){
 #	To opt-in run: jiri init -analytics-opt=true "/Users/penkwe/Projects/fuchsia"
 }
 
+arch=$(uname -m)        
+case $arch in
+	arm*)               
+		set-arm-java
+		env-macports
+		export PATH="/usr/local/bin:$PATH"    
+		export PATH="/usr/local/sbin:$PATH"    
+		eval `/usr/libexec/path_helper -s`    
+		eval $(/opt/homebrew/bin/brew shellenv)    
+		;;              
+	i?86|x86*|amd64)    
+		set-x64-java
+		env-macports
+		export PATH="/opt/homebrew/bin:$PATH"    
+		export PATH="/opt/homebrew/sbin:$PATH"    
+		eval `/usr/libexec/path_helper -s`    
+		eval $(/usr/local/Homebrew/bin/brew shellenv)    
+		ZSH_THEME="random"
+		;;              
+esac
+alias abrew="arch -arm64 /opt/homebrew/bin/brew"  # ARM Homebrew
+alias ibrew="arch -x86_64 /usr/local/bin/brew" # X86 Homebrew
