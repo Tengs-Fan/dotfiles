@@ -61,6 +61,10 @@ plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+#source $HOME/.cargo/env
+export PATH=$HOME/.bin:$PATH
+. $HOME/.bin/func.sh
+
 # User configuration
 export EDITOR='nvim'
 export NEMU_HOME=/home/frind/Code/ics2020/nemu
@@ -93,16 +97,17 @@ setopt magicequalsubst     # enable filename expansion for arguments of the form
 #  fi
 #}
 
-# CommandLine Utilities
-eval "$(zoxide init zsh)"
-eval $(thefuck --alias)
-
+# CommandLine Edit
 WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'
 setopt extendedglob 		# Keybindings to help edit
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 #bindkey '^-' undo 		# ctrl + bar
 bindkey -s '^o' 'nvim $(fzf)^M'
+
+# ======================================================================== #
+# Architecture Dependent
+# ======================================================================== #
 
 if [ $(uname -s) = "Darwin" ]  
 then
@@ -133,12 +138,17 @@ then
 	test -e /Users/penkwe/.iterm2_shell_integration.zsh && source /Users/penkwe/.iterm2_shell_integration.zsh || true
 fi
 
-
 if [ $(uname -s) = "Linux" ]  
 then
+	set-brew
+	set-proxy
+	#set-xilinx
+	
 	export TERM=kitty
+
 	# Use powerline
 	USE_POWERLINE="true"
+
 	# Source manjaro-zsh-configuration
 	if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
 	  source /usr/share/zsh/manjaro-zsh-config
@@ -148,3 +158,7 @@ then
 	  source /usr/share/zsh/manjaro-zsh-prompt
 	fi
 fi
+
+# CommandLine Utilities
+eval $(zoxide init zsh)
+eval $(thefuck --alias)

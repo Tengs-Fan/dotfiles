@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-# rust
-#source $HOME/.cargo/env
-
-# Path
-set-brew
-set-proxy
-#set-xilinx
-
-export PATH=$HOME/.bin:$PATH
-
-# Small Scripts
-. $HOME/.bin/func.sh
-
 # ----- ----- Default PATH & Config ----- ----- #
 export PATH="/Users/penkwe/.bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/lib $LDFLAGS"
