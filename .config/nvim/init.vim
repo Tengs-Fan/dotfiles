@@ -6,6 +6,9 @@ set tabstop=4
 set shiftwidth=4
 set encoding=utf-8
 
+" Cursor
+autocmd InsertEnter,InsertLeave * set cul!
+
 syntax on
 colorscheme desert
 
@@ -223,6 +226,9 @@ Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'davidhalter/jedi-vim'
 
 Plugin 'neoclide/coc.nvim'
+
+" Code Annotation
+Plugin 'preservim/nerdcommenter'
 
 " File System
 Plugin 'The-NERD-tree'
