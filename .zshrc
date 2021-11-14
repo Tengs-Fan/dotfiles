@@ -97,6 +97,10 @@ setopt magicequalsubst     # enable filename expansion for arguments of the form
 #  fi
 #}
 
+# CommandLine Utilities
+eval "$(zoxide init zsh)"
+eval $(thefuck --alias)
+
 # CommandLine Edit
 WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'
 setopt extendedglob 		# Keybindings to help edit
@@ -111,30 +115,6 @@ bindkey -s '^o' 'nvim $(fzf)^M'
 
 if [ $(uname -s) = "Darwin" ]  
 then
- 
-	arch=$(uname -m)        
-	case $arch in
-		arm*)               
-			set-arm-java
-			env-macports
-			export PATH="/usr/local/bin:$PATH"    
-			export PATH="/usr/local/sbin:$PATH"    
-			eval `/usr/libexec/path_helper -s`    
-			eval $(/opt/homebrew/bin/brew shellenv)    
-			;;              
-		i?86|x86*|amd64)    
-			set-x64-java
-			env-macports
-			export PATH="/opt/homebrew/bin:$PATH"    
-			export PATH="/opt/homebrew/sbin:$PATH"    
-			eval `/usr/libexec/path_helper -s`    
-			eval $(/usr/local/Homebrew/bin/brew shellenv)    
-			ZSH_THEME="random"
-			;;              
-	esac
-	alias abrew="arch -arm64 /opt/homebrew/bin/brew"  # ARM Homebrew
-	alias ibrew="arch -x86_64 /usr/local/bin/brew" # X86 Homebrew
-
 	test -e /Users/penkwe/.iterm2_shell_integration.zsh && source /Users/penkwe/.iterm2_shell_integration.zsh || true
 fi
 
@@ -158,7 +138,3 @@ then
 	  source /usr/share/zsh/manjaro-zsh-prompt
 	fi
 fi
-
-# CommandLine Utilities
-eval $(zoxide init zsh)
-eval $(thefuck --alias)
