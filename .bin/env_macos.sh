@@ -1,26 +1,3 @@
-function set-brew(){
-	arch=$(uname -m)        
-	case $arch in
-		arm*)               
-			export PATH="/usr/local/bin:$PATH"    
-			export PATH="/usr/local/sbin:$PATH"    
-			#eval `/usr/libexec/path_helper -s`    
-			eval $(/opt/homebrew/bin/brew shellenv)    
-			;;              
-		i?86|x86*|amd64)    
-			export PATH="/opt/homebrew/bin:$PATH"    
-			export PATH="/opt/homebrew/sbin:$PATH"    
-			#eval `/usr/libexec/path_helper -s`    
-			eval $(/usr/local/Homebrew/bin/brew shellenv)    
-			;;              
-	esac
-	alias abrew="arch -arm64 /opt/homebrew/bin/brew"  # ARM Homebrew
-	alias ibrew="arch -x86_64 /usr/local/bin/brew" # X86 Homebrew
-
-	export LDFLAGS="-L/opt/homebrew/lib $LDFLAGS"
-	export CPPFLAGS="-I/opt/homebrew/include $CPPFLAGS"
-}
-
 # ----- ----- Set Environment ----- ----- #
 function env-develop(){
 	set-conda
@@ -46,6 +23,30 @@ function env-macports(){
 }
 
 # ----- ----- PATH & Config ----- ----- #
+function set-brew(){
+	arch=$(uname -m)        
+	case $arch in
+		arm*)               
+			export PATH="/usr/local/bin:$PATH"    
+			export PATH="/usr/local/sbin:$PATH"    
+			#eval `/usr/libexec/path_helper -s`    
+			eval $(/opt/homebrew/bin/brew shellenv)    
+			;;              
+		i?86|x86*|amd64)    
+			export PATH="/opt/homebrew/bin:$PATH"    
+			export PATH="/opt/homebrew/sbin:$PATH"    
+			#eval `/usr/libexec/path_helper -s`    
+			eval $(/usr/local/Homebrew/bin/brew shellenv)    
+			;;              
+	esac
+	alias abrew="arch -arm64 /opt/homebrew/bin/brew"  # ARM Homebrew
+	alias ibrew="arch -x86_64 /usr/local/bin/brew" # X86 Homebrew
+
+	export LDFLAGS="-L/opt/homebrew/lib $LDFLAGS"
+	export CPPFLAGS="-I/opt/homebrew/include $CPPFLAGS"
+}
+
+
 function set-llvm(){
 	export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 	export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/opt/homebrew/opt/llvm/lib $LDFLAGS"
