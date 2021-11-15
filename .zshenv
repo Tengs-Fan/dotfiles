@@ -2,7 +2,7 @@ OS=$(uname -s)
 case $OS in
 	Darwin)
 		CONDA_PATH=/usr/local/Caskroom/miniconda
-		export ZSH="/User/penkwe/.oh-my-zsh"
+		export ZSH="/Users/penkwe/.oh-my-zsh"
 		;;
 	Linux)
 		CONDA_PATH=/home/penkwec/miniconda3
@@ -13,6 +13,8 @@ esac
 # ----- ----- Config that include local variables ----- ----- #
 
 #source $HOME/.cargo/env
+set-brew
+
 . $HOME/.bin/func.sh
 export PATH=$HOME/.bin:$PATH
 

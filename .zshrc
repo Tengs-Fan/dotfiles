@@ -8,7 +8,6 @@ fi
 
 if [ $(uname -s) = "Linux" ]  
 then
-	set-brew
 	set-proxy
 	#set-xilinx
 	
@@ -36,6 +35,10 @@ fi
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="kennethreitz"
+if [ $(arch) = "i386" ]
+then
+	ZSH_THEME="random"
+fi
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # CASE_SENSITIVE="true"
@@ -104,7 +107,7 @@ setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
 
 # CommandLine Utilities
-eval $(zoxide init zsh)
+eval "$(zoxide init zsh)"
 eval $(thefuck --alias)
 
 # CommandLine Edit
@@ -128,4 +131,3 @@ bindkey -s '^o' 'nvim $(fzf)^M'
 #    zle .kill-region
 #  fi
 #}
-
