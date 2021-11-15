@@ -107,7 +107,7 @@ setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
 
 # CommandLine Utilities
-eval $(zoxide init zsh)
+eval "$(zoxide init zsh)"
 eval $(thefuck --alias)
 
 # CommandLine Edit
