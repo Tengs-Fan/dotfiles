@@ -1,30 +1,42 @@
-# ----- ----- Default PATH & Config ----- ----- #
-export PATH="/Users/penkwe/.bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/lib $LDFLAGS"
-export CPPFLAGS="-I/opt/homebrew/include $CPPFLAGS"
+OS=$(uname -s)
+case $OS in
+	Darwin)
+		CONDA_PATH=/usr/local/Caskroom/miniconda
+		export ZSH="/User/penkwe/.oh-my-zsh"
+		;;
+	Linux)
+		CONDA_PATH=/home/penkwec/miniconda3
+		export ZSH="/home/penkwec/.oh-my-zsh"
+		;;
+esac
+
+# ----- ----- Config that include local variables ----- ----- #
+
+#source $HOME/.cargo/env
+. $HOME/.bin/func.sh
+export PATH=$HOME/.bin:$PATH
+
+# User configuration
+export EDITOR='nvim'
+export NEMU_HOME=$HOME/Code/ics2020/nemu
+export AM_HOME=$HOME/Code/ics2020/abstract-machine
+
+# Alias
+source $HOME/.config/zsh/aliases
+
 
 function set-conda(){
 
-	OS=$(uname -s)
-	case $OS in
-		Darwin)
-			CONDA_PATH=/usr/local/Caskroom/miniconda
-			;;
-		Linux)
-			CONDA_PATH=/home/penkwec/miniconda
-			;;
-	esac
-	
 	# >>> conda initialize >>>
 	# !! Contents within this block are managed by 'conda init' !!
-	__conda_setup="$("$CONDA_PATH/miniconda/base/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+	__conda_setup="$("$CONDA_PATH/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
 	if [ $? -eq 0 ]; then
 		eval "$__conda_setup"
 	else
 		if [ -f "$CONDA_PATH/base/etc/profile.d/conda.sh" ]; then
 			. "$CONDA_PATH/base/etc/profile.d/conda.sh"
 		else
-			export PATH="$CONDA_PATH/miniconda/base/bin:$PATH"
+			export PATH="$CONDA_PATH/bin:$PATH"
 		fi
 	fi
 	unset __conda_setup
