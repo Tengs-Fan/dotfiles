@@ -35,7 +35,7 @@ fi
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="kennethreitz"
-if [ $(arch) = "i386" ]
+if [ $(uname -m) = "x86_64" ]
 then
 	ZSH_THEME="random"
 fi
