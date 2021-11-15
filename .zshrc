@@ -1,16 +1,16 @@
 # ======================================================================== #
 # OS Dependent
 # ======================================================================== #
+ZSH_THEME="kennethreitz"
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 if [ $(uname -s) = "Darwin" ]  
 then
-	ZSH_THEME="kennethreitz"
 	if [ $(uname -m) = "x86_64" ]
 	then
 		ZSH_THEME="random"
 	fi
-	# to know which specific one was loaded, run: echo $RANDOM_THEME
-	# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-	# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 	test -e /Users/penkwe/.iterm2_shell_integration.zsh && source /Users/penkwe/.iterm2_shell_integration.zsh || true
 fi
 
