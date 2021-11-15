@@ -3,6 +3,14 @@
 # ======================================================================== #
 if [ $(uname -s) = "Darwin" ]  
 then
+	ZSH_THEME="kennethreitz"
+	if [ $(uname -m) = "x86_64" ]
+	then
+		ZSH_THEME="random"
+	fi
+	# to know which specific one was loaded, run: echo $RANDOM_THEME
+	# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+	# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 	test -e /Users/penkwe/.iterm2_shell_integration.zsh && source /Users/penkwe/.iterm2_shell_integration.zsh || true
 fi
 
@@ -30,16 +38,6 @@ fi
 # Oh-my-zsh
 # ======================================================================== #
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="kennethreitz"
-if [ $(uname -m) = "x86_64" ]
-then
-	ZSH_THEME="random"
-fi
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # CASE_SENSITIVE="true"
 # Uncomment the following line to use hyphen-insensitive completion.
