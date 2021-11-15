@@ -8,7 +8,6 @@ fi
 
 if [ $(uname -s) = "Linux" ]  
 then
-	set-brew
 	set-proxy
 	#set-xilinx
 	
@@ -36,6 +35,10 @@ fi
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="kennethreitz"
+if [ $(arch) = "i386" ]
+then
+	ZSH_THEME="random"
+fi
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # CASE_SENSITIVE="true"
@@ -128,4 +131,3 @@ bindkey -s '^o' 'nvim $(fzf)^M'
 #    zle .kill-region
 #  fi
 #}
-

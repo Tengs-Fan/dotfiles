@@ -4,15 +4,14 @@ function set-brew(){
 		arm*)               
 			export PATH="/usr/local/bin:$PATH"    
 			export PATH="/usr/local/sbin:$PATH"    
-			eval `/usr/libexec/path_helper -s`    
+			#eval `/usr/libexec/path_helper -s`    
 			eval $(/opt/homebrew/bin/brew shellenv)    
 			;;              
 		i?86|x86*|amd64)    
 			export PATH="/opt/homebrew/bin:$PATH"    
 			export PATH="/opt/homebrew/sbin:$PATH"    
-			eval `/usr/libexec/path_helper -s`    
+			#eval `/usr/libexec/path_helper -s`    
 			eval $(/usr/local/Homebrew/bin/brew shellenv)    
-			ZSH_THEME="random"
 			;;              
 	esac
 	alias abrew="arch -arm64 /opt/homebrew/bin/brew"  # ARM Homebrew
