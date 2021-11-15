@@ -17,6 +17,9 @@ function set-brew(){
 	esac
 	alias abrew="arch -arm64 /opt/homebrew/bin/brew"  # ARM Homebrew
 	alias ibrew="arch -x86_64 /usr/local/bin/brew" # X86 Homebrew
+
+	export LDFLAGS="-L/opt/homebrew/lib $LDFLAGS"
+	export CPPFLAGS="-I/opt/homebrew/include $CPPFLAGS"
 }
 
 # ----- ----- Set Environment ----- ----- #

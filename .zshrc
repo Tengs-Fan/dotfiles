@@ -1,18 +1,13 @@
 # ======================================================================== #
-# Architecture Dependent
+# OS Dependent
 # ======================================================================== #
-
 if [ $(uname -s) = "Darwin" ]  
 then
-
 	test -e /Users/penkwe/.iterm2_shell_integration.zsh && source /Users/penkwe/.iterm2_shell_integration.zsh || true
-
 fi
 
 if [ $(uname -s) = "Linux" ]  
 then
-	export ZSH="/home/penkwec/.oh-my-zsh"
-
 	set-brew
 	set-proxy
 	#set-xilinx
@@ -32,9 +27,9 @@ then
 	fi
 fi
 
-# CommandLine Utilities
-eval $(zoxide init zsh)
-eval $(thefuck --alias)
+# ======================================================================== #
+# Oh-my-zsh
+# ======================================================================== #
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -94,17 +89,9 @@ plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
-#source $HOME/.cargo/env
-export PATH=$HOME/.bin:$PATH
-. $HOME/.bin/func.sh
-
-# User configuration
-export EDITOR='nvim'
-export NEMU_HOME=$HOME/Code/ics2020/nemu
-export AM_HOME=$HOME/Code/ics2020/abstract-machine
-
-# Alias
-source $HOME/.config/zsh/aliases
+# ======================================================================= #
+# Common Utilities
+# ======================================================================= #
 
 # History
 setopt HIST_FIND_NO_DUPS
@@ -115,6 +102,18 @@ setopt histignorealldups sharehistory
 setopt notify              # report the status of background jobs immediately
 setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
+
+# CommandLine Utilities
+eval $(zoxide init zsh)
+eval $(thefuck --alias)
+
+# CommandLine Edit
+WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'
+setopt extendedglob 		# Keybindings to help edit
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+#bindkey '^-' undo 		# ctrl + bar
+bindkey -s '^o' 'nvim $(fzf)^M'
 
 # Override the existing widget that's bound to alt-backspace.
 #zle -N backward-kill-word
@@ -130,10 +129,3 @@ setopt magicequalsubst     # enable filename expansion for arguments of the form
 #  fi
 #}
 
-# CommandLine Edit
-WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'
-setopt extendedglob 		# Keybindings to help edit
-bindkey "^P" up-line-or-search
-bindkey "^N" down-line-or-search
-#bindkey '^-' undo 		# ctrl + bar
-bindkey -s '^o' 'nvim $(fzf)^M'
