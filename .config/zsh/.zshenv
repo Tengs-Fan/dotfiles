@@ -15,14 +15,17 @@ esac
 #source $HOME/.cargo/env
 set-brew
 
-source $HOME/.bin/func.sh				# Personal Functions
-source $HOME/.config/zsh/aliases		# Aliases
+. $HOME/.bin/func.sh
 export PATH=$HOME/.bin:$PATH
 
 # User configuration
 export EDITOR='nvim'
 export NEMU_HOME=$HOME/Code/ics2020/nemu
 export AM_HOME=$HOME/Code/ics2020/abstract-machine
+
+# Alias
+source $HOME/.config/zsh/aliases
+
 
 function set-conda(){
 
