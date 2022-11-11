@@ -250,6 +250,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
 Plugin 'iamcco/markdown-preview.nvim'
 
+" Tex Preview
+Plugin 'lervag/vimtex'
+
 "Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line

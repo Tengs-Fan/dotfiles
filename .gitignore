@@ -1,11 +1,8 @@
-.cfg
-.*_history
-.zsh_history
-.zhistory
-.vim
+# Ignore everything
+*
 
-.cache
-.mozilla
+# But not these files...
+!.gitignore
 
 .config/
 !.config/onedrive
@@ -14,10 +11,4 @@
 !.config/clash
 !.config/ibus
 
-Code/
-Desktop/
-Documents/
-Downloads/
-OneDrive/
-Pictures/
-Projects/
+
