@@ -114,7 +114,7 @@ setopt extendedglob 		# Keybindings to help edit
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
 #bindkey '^-' undo 		# ctrl + bar
-bindkey -s '^o' 'nvim $(fzf)^M'
+#bindkey -s '^o' 'nvim $(fzf)^M'
 
 # Override the existing widget that's bound to alt-backspace.
 #zle -N backward-kill-word
