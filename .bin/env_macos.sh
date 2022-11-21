@@ -162,3 +162,6 @@ function set-fuchsia(){
 #	To opt-in run: jiri init -analytics-opt=true "/Users/penkwe/Projects/fuchsia"
 }
 
+function set-deno() {
+	export PATH="/Users/penkwe/.deno/bin:$PATH"
+}
