@@ -16,7 +16,7 @@ fi
 
 if [ $(uname -s) = "Linux" ]  
 then
-	set-proxy
+	#set-proxy
 	#set-xilinx
 	
 	export TERM=kitty
