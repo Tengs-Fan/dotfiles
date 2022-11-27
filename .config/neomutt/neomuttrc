@@ -1,0 +1,22 @@
+# set folder = "imaps://tengspenkwe@gmail.com:993"
+
+
+
+set from = "tengspenkwe@gmail.com"
+#set realname = "First Last"
+# IMAP settings
+set imap_user = "498296816a@gmail.com"
+
+# # SMTP settings
+# set smtp_url = "smtps://username@smtp.gmail.com"
+# set smtp_pass = "<mailbox password>"
+# # Remote Gmail folders
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set record = "+[Gmail]/Sent Mail"
+set trash = "+[Gmail]/Trash"
+
+source "~/.config/neomutt/mapping"
+
+source "gpg -d ~/.config/neomutt/password.gpg |"
