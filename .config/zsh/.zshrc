@@ -16,22 +16,17 @@ fi
 
 if [ $(uname -s) = "Linux" ]  
 then
-	set-proxy
+	#set-proxy
 	#set-xilinx
 	
-	export TERM=kitty
-
-	# Use powerline
-	#USE_POWERLINE="true"
-
 	# Source manjaro-zsh-configuration
 	if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
 	  source /usr/share/zsh/manjaro-zsh-config
 	fi
 	# Use manjaro zsh prompt
-	#if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-	  #source /usr/share/zsh/manjaro-zsh-prompt
-	#fi
+	if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+	  source /usr/share/zsh/manjaro-zsh-prompt
+	fi
 fi
 
 # ======================================================================== #
@@ -45,7 +40,7 @@ fi
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
