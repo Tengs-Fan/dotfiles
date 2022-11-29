@@ -16,3 +16,7 @@ function cmd() {
 	mkdir $1
 	cd $1
 }
+
+function weather() {
+  curl wttr.in/$1
+}
