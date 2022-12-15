@@ -1,3 +1,13 @@
+set arch (uname -m)
+set os (uname)
+
+if [ $os = "Darwin" ]
+	source $HOME/.bin/env_macos.fish
+else
+	source $HOME/.bin/env_linux.fish
+end
+
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+	set-brew
+	zoxide init fish | source
 end
