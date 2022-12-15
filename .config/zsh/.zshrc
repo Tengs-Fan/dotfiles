@@ -7,11 +7,11 @@ ZSH_THEME="kennethreitz"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 if [ $(uname -s) = "Darwin" ]  
 then
-	#if [ $(uname -m) = "x86_64" ]
-	#then
-	#	ZSH_THEME="random"
-	#fi
-	test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+	if [ $(uname -m) = "x86_64" ]
+	then
+		ZSH_THEME="random"
+	fi
+	test -e /Users/penkwe/.iterm2_shell_integration.zsh && source /Users/penkwe/.iterm2_shell_integration.zsh || true
 fi
 
 if [ $(uname -s) = "Linux" ]  
@@ -81,18 +81,18 @@ COMPLETION_WAITING_DOTS="true"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-#plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
-#source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # ======================================================================= #
 # Common Utilities
 # ======================================================================= #
 
 # History
-#HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-#HISTSIZE=10000
-#SAVEHIST=10000
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 setopt HIST_FIND_NO_DUPS
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_space      # ignore commands that start with space
@@ -104,7 +104,7 @@ setopt magicequalsubst     # enable filename expansion for arguments of the form
 
 # CommandLine Utilities
 eval "$(zoxide init zsh)"
-#eval $(thefuck --alias)
+eval $(thefuck --alias)
 
 # CommandLine Edit
 WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'

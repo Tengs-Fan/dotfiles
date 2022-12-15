@@ -2,11 +2,11 @@ OS=$(uname -s)
 case $OS in
 	Darwin)
 		CONDA_PATH=/opt/homebrew/Caskroom/miniconda/base
-		export ZSH="$HOME/.oh-my-zsh"
+		export ZSH="/Users/penkwe/.oh-my-zsh"
 		;;
 	Linux)
-		CONDA_PATH=$HOME/miniconda3
-		export ZSH="$HOME/.oh-my-zsh"
+		CONDA_PATH=/home/penkwec/miniconda3
+		export ZSH="/home/penkwec/.oh-my-zsh"
 		;;
 esac
 
