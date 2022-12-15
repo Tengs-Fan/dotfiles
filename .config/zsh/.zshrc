@@ -90,9 +90,9 @@ source $ZSH/oh-my-zsh.sh
 # ======================================================================= #
 
 # History
-HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+#HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+#HISTSIZE=10000
+#SAVEHIST=10000
 setopt HIST_FIND_NO_DUPS
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_space      # ignore commands that start with space
@@ -104,7 +104,7 @@ setopt magicequalsubst     # enable filename expansion for arguments of the form
 
 # CommandLine Utilities
 eval "$(zoxide init zsh)"
-eval $(thefuck --alias)
+#eval $(thefuck --alias)
 
 # CommandLine Edit
 WORDCHARS='*?_[]\|~&;!'\''#$%^(){}<>'
