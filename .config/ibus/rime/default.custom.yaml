@@ -1,0 +1,8 @@
+patch:
+  menu:
+    page_size: 6
+  schema_list:
+  - schema: zyenpheng      # 朙月拼音 简化字
+#  - schema: luna_pinyin          # 朙月拼音
+#  - schema: double_pinyin        # 自然碼雙拼
+
