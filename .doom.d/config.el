@@ -23,6 +23,7 @@
 ;;
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -74,3 +75,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(setq initial-frame-alist
+      (append initial-frame-alist
+              '((left . 100) (top . 0) (width . 100) (height . 800))))
