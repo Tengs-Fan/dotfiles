@@ -1,24 +1,17 @@
 # ======================================================================== #
 # OS Dependent
 # ======================================================================== #
-ZSH_THEME="kennethreitz"
+ZSH_THEME="random"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 if [ $(uname -s) = "Darwin" ]  
 then
-	if [ $(uname -m) = "x86_64" ]
-	then
-		ZSH_THEME="random"
-	fi
 	test -e /Users/penkwe/.iterm2_shell_integration.zsh && source /Users/penkwe/.iterm2_shell_integration.zsh || true
 fi
 
 if [ $(uname -s) = "Linux" ]  
 then
-	#set-proxy
-	#set-xilinx
-	
 	# Source manjaro-zsh-configuration
 	if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
 	  source /usr/share/zsh/manjaro-zsh-config
@@ -114,16 +107,7 @@ bindkey "^N" down-line-or-search
 #bindkey '^-' undo 		# ctrl + bar
 #bindkey -s '^o' 'nvim $(fzf)^M'
 
-# Override the existing widget that's bound to alt-backspace.
-#zle -N backward-kill-word
-#backward-kill-word() {
-#  if [[ $LBUFFER[-1] == [[:WORD:]] ]]; then
-#    # If there's a word char left of the cursor, use the old widget.
-#    zle .backward-kill-word
-#  else
-#    # Select all consecutive non-word chars left of the cursor.
-#    (( MARK = ${#LBUFFER%%[^[:WORD:]]##}  ))
-#    # Kill them. 
-#    zle .kill-region
-#  fi
-#}
+# Random Shell
+Shells=(elvish nu xonsh oil)
+choice=$((RANDOM % 4))
+${Shells[choice]}
