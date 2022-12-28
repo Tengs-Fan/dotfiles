@@ -1,6 +1,8 @@
+set EDITOR nvim
+
+
 set arch (uname -m)
 set os (uname)
-
 if [ $os = "Darwin" ]
 	source $HOME/.bin/env_macos.fish
 else
