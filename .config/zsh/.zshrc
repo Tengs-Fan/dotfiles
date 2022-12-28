@@ -109,5 +109,5 @@ bindkey "^N" down-line-or-search
 
 # Random Shell
 Shells=(elvish nu xonsh oil)
-choice=$((RANDOM % 4))
+choice=$((RANDOM % 4))+1
 ${Shells[choice]}
