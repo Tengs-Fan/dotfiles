@@ -1,5 +1,5 @@
 # Nushell Config File
-source ~/.zoxide.nu
+source ~/.config/nushell/zoxide.nu
 
 module completions {
   # Custom completions for external commands (those outside of Nushell)
