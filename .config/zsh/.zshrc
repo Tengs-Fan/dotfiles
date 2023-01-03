@@ -1,3 +1,18 @@
+# ----- ----- Config that include local variables ----- ----- #
+
+. $HOME/.bin/func.d/*.zsh
+source $HOME/.cargo/env
+set-brew
+
+export PATH=$HOME/.bin:$HOME/.local/bin:$PATH
+
+# User configuration
+export EDITOR='nvim'
+export NEMU_HOME=$HOME/Code/ics2020/nemu
+export AM_HOME=$HOME/Code/ics2020/abstract-machine
+
+# Alias
+source $HOME/.config/zsh/aliases
 # ======================================================================== #
 # OS Dependent
 # ======================================================================== #
@@ -7,7 +22,7 @@ ZSH_THEME="random"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 if [ $(uname -s) = "Darwin" ]  
 then
-	test -e /Users/penkwe/.iterm2_shell_integration.zsh && source /Users/penkwe/.iterm2_shell_integration.zsh || true
+	test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
 fi
 
 if [ $(uname -s) = "Linux" ]  
@@ -76,6 +91,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
+export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 # ======================================================================= #
@@ -109,5 +125,5 @@ bindkey "^N" down-line-or-search
 
 # Random Shell
 Shells=(elvish nu xonsh oil)
-choice=$((RANDOM % 4))
+choice=$((RANDOM % 4))+1
 ${Shells[choice]}
