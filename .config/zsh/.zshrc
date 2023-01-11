@@ -3,6 +3,7 @@
 . $HOME/.bin/func.d/*.zsh
 source $HOME/.cargo/env
 set-brew
+set-haskell
 
 export PATH=$HOME/.bin:$HOME/.local/bin:$PATH
 
