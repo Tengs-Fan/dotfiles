@@ -9,7 +9,7 @@ if [ $os=='Darwin' ] ; then
     HOMEBREW_ROOT="/usr/local"
   fi
 else 
-  USER_ROOT="/home/tengs"
+  USER_ROOT="/home/penkwec"
   HOMEBREW_ROOT="/home/.linuxbrew"
 fi
 
