@@ -40,7 +40,7 @@ function set-deno() {
 # ----- ----- path & config of appplication ----- ----- #
 function set-cuda() {
 	export PATH="/opt/cuda/bin:$PATH";
-	export LDFLAGS="-L/opt/cuda/lib64 /$LDFLAGS"
+	export LDFLAGS="-L/opt/cuda/lib64 $LDFLAGS"
 	export CPPFLAGS="-I/opt/cuda/include $CPPFLAGS"
 	export CFLAGS="-I/opt/cuda/include $CFLAGS"
 }
