@@ -1,6 +1,4 @@
 # ----- ----- OS Specific ----- ----- #
-set -e 
-
 os=$(uname)
 arch=$(uname -m)        
 if [ $os=='Darwin' ] ; then

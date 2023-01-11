@@ -124,6 +124,6 @@ bindkey "^N" down-line-or-search
 #bindkey -s '^o' 'nvim $(fzf)^M'
 
 # Random Shell
-Shells=(elvish nu xonsh oil)
-choice=$((RANDOM % 4))+1
-${Shells[choice]}
+# Shells=(elvish nu xonsh oil)
+# choice=$((RANDOM % 4))+1
+# ${Shells[choice]}
