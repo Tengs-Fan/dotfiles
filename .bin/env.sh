@@ -1,9 +1,9 @@
 # ----- ----- OS Specific ----- ----- #
 os=$(uname)
 arch=$(uname -m)        
-if [ $os=='Darwin' ] ; then
+if [ "$os" = 'Darwin' ] ; then
   USER_ROOT="/Users/tengs"
-  if [ $arch=='arm64' ]; then 
+  if [ "$arch" = 'arm64' ]; then 
     HOMEBREW_ROOT="/opt/homebrew"
   else
     HOMEBREW_ROOT="/usr/local"
