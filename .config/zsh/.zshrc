@@ -17,7 +17,6 @@ source $HOME/.config/zsh/aliases
 # ======================================================================== #
 # OS Dependent
 # ======================================================================== #
-ZSH_THEME="random"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
@@ -28,6 +27,7 @@ fi
 
 if [ $(uname -s) = "Linux" ]  
 then
+  ZSH_THEME="random"
 	# Source manjaro-zsh-configuration
 	if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
 	  source /usr/share/zsh/manjaro-zsh-config
