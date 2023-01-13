@@ -1,6 +1,7 @@
 # ----- ----- Config that include local variables ----- ----- #
 
 . $HOME/.bin/func.d/*.zsh
+. $HOME/.bin/func.sh
 source $HOME/.cargo/env
 set-brew
 set-haskell
