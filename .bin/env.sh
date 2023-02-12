@@ -51,6 +51,13 @@ function set-llvm(){
 	export CPPFLAGS="-I$HOMEBREW_ROOT/opt/llvm/include $CPPFLAGS"
 }
 
+function set-ruby() {
+  export PATH="$HOMEBREW_ROOT/opt/ruby/bin:$PATH"
+  export LDFLAGS="-L$HOMEBREW_ROOT/opt/ruby/lib $LDFLAGS"
+  export CPPFLAGS="-I$HOMEBREW_ROOT/opt/ruby/include $CPPFLAGS"
+  export PKG_CONFIG_PATH="$HOMEBREW_ROOT/opt/ruby/lib/pkgconfig $PKG_CONFIG_PATH"
+}
+
 function set-fuchsia(){
 #	export PATH="$PATH:/Users/penkwe/Projects/fuchsia/.jiri_root/bin"
 #	[10:37:53.264] WARN: Please opt in or out of analytics collection. You will receive this warning until an option is selected.
