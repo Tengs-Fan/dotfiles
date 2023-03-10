@@ -20,11 +20,12 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["|"] = ":vsplit<cr>"
-lvim.keys.normal_mode["-"] = ":split<cr>"
+lvim.keys.normal_mode["_"] = ":split<cr>"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
 lvim.keys.insert_mode["<C-f>"] = "<Right>"
 lvim.keys.insert_mode["<C-b>"] = "<Left>"
+lvim.keys.visual_mode["u"] = ""
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -64,6 +65,7 @@ lvim.builtin.which_key.mappings["t"] = {
   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+  t = { "<cmd>TroubleClose <cr>", "Close Diagnostics"}
 }
 
 -- TODO: User Config for predefined plugins
@@ -170,10 +172,13 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- Additional Plugins
 lvim.plugins = {
-    {
-      "folke/trouble.nvim",
-      cmd = "TroubleToggle",
-    },
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
+  },
+  {
+    "ryvnf/readline.vim"
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
