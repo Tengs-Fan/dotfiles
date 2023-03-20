@@ -1,3 +1,8 @@
+function add-path() {
+  absolute=$(readlink -f "$1")
+  export PATH="$absolute:$PATH"
+}
+
 function set-clash() {
 	ln -s /home/linuxbrew/.linuxbrew/opt/clash/bin/clash /usr/local/bin/clash
 	curl https://efanyun.me/clash/207089/uWJGgmHgzX/ > /etc/clash/config.yaml
