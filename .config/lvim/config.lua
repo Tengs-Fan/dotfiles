@@ -96,6 +96,8 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
 
 -- generic LSP settings
+vim.cmd 'autocmd BufRead,BufNewFile *.pl set filetype=prolog'
+require('lspconfig').prolog_ls.setup{}
 
 -- -- make sure server will always be installed even if the server is in skipped_servers list
 -- lvim.lsp.installer.setup.ensure_installed = {
