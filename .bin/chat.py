@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+import os
 import openai
 
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 message=[
         {"role": "system", "content": "As a proficient programmer, you always think step by step"},
