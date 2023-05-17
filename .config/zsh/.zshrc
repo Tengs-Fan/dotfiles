@@ -2,7 +2,7 @@
 
 . $HOME/.bin/func.d/*.zsh
 . $HOME/.bin/func.sh
-source $HOME/.cargo/env
+set-rust
 set-brew
 set-haskell
 
