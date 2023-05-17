@@ -100,8 +100,8 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ -10%"), desc="Decrease the volume"),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ +10%"), desc="Increase the volume"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"), desc="Decrease the volume"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"), desc="Increase the volume"),
     # Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
     # Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
     # Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
