@@ -45,15 +45,15 @@ CYAN = '#5fb3b3'
 WHITE = '#ffffff'
 
 colours = [
-    ["#1f2329", "#1f2329"],  # Background
-    ["#dcdcdc", "#dcdcdc"],  # Foreground
-    ["#535965", "#535965"],  # Grey Colour
-    ["#e55561", "#e55561"],
-    ["#8ebd6b", "#8ebd6b"],
-    ["#e2b86b", "#e2b86b"],
-    ["#4fa6ed", "#4fa6ed"],
-    ["#bf68d9", "#bf68d9"],
-    ["#48b0bd", "#48b0bd"],
+    ["#1f232900", "#1f232900"],  # Background
+    ["#dcdcdc00", "#dcdcdc00"],  # Foreground
+    ["#53596500", "#53596500"],  # Grey Colour
+    ["#e5556100", "#e5556100"],
+    ["#8ebd6b00", "#8ebd6b00"],
+    ["#e2b86b00", "#e2b86b00"],
+    ["#4fa6ed00", "#4fa6ed00"],
+    ["#bf68d900", "#bf68d900"],
+    ["#48b0bd00", "#48b0bd00"],
 ]
 
 keys = [
@@ -85,10 +85,7 @@ keys = [
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
-    Key(
-        [mod, "shift"],
-        "Return",
-        lazy.layout.toggle_split(),
+    Key( [mod, "shift"], "Return", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
@@ -105,9 +102,8 @@ keys = [
     # Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
     # Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
     # Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-"), desc="Decrease the brightness"),
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 10%+"), desc="Increase the brightness"),
-
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -d intel_backlight set 10%+"), desc="Increase the brightness"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -d intel_backlight set 10%-"), desc="Decrease the brightness"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -116,19 +112,11 @@ for i in groups:
     keys.extend(
         [
             # mod1 + letter of group = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
-            ),
+            Key([mod], i.name, lazy.group[i.name].toscreen(),
+                desc="Switch to group {}".format(i.name),),
             # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
-            ),
+            Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+                desc="Switch to & move focused window to group {}".format(i.name),),
             # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + letter of group = move focused window to group
             # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
@@ -150,14 +138,14 @@ layouts = [
     layout.MonadWide(**layout_theme),
     layout.Max(**layout_theme),
     # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
+    layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
-    # layout.TreeTab(),
+    layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
@@ -187,7 +175,7 @@ widgets = [
         padding=10),
     widget.GroupBox(
         active=colours[4],
-        inactive=colours[6],
+        inactive=colours[2],
         other_current_screen_border=colours[5],
         other_screen_border=colours[2],
         this_current_screen_border=colours[7],
@@ -220,13 +208,17 @@ widgets = [
         padding=10),
     widget.WindowName(
         max_chars=75),
-    # widget.Backlight(
-    #     foreground=colours[3],
-    #     foreground_alert=colours[3],
-    #     format=" {percent:2.0%}",
-    #     backlight_name="amdgpu_bl0", # ls /sys/class/backlight/
-    #     change_command="brightnessctl set {0}%",
-    #     step=10),
+    widget.Backlight(
+        foreground=colours[5],
+        foreground_alert=colours[3],
+        format="🔆{percent:2.0%}",
+        backlight_name="intel_backlight", # ls /sys/class/backlight/
+        change_command="brightnessctl -d intel_backlight set {0}%",
+        step=10),
+    widget.Sep(
+        foreground=colours[2],
+        linewidth=1,
+        padding=10),
     widget.CPU(
         foreground=colours[3],
         format=" {load_percent}%",
@@ -244,6 +236,25 @@ widgets = [
         mouse_callbacks={
             "Button1": lambda: qtile.cmd_spawn(MYTERM + " -e bpytop"),
         },
+        update_interval=1.0),
+    widget.Sep(
+        foreground=colours[2],
+        linewidth=1,
+        padding=10),
+    widget.Net(
+        foreground=colours[2],
+        format='爵 ↑{up} ↓{down}',
+        # mouse_callbacks={
+        #     "Button1": lambda: qtile.cmd_spawn(MYTERM + " -e bpytop"),
+        # },
+        update_interval=1.0),
+    # widget.Net(
+    #     foreground = colours[7],
+    #     format = "爵 {down}  ",
+    #     interface = "enp1s0"),
+    widget.Wlan(
+        foreground=colours[2],
+        format='🛜{essid}, {percent:2.0%}',
         update_interval=1.0),
     widget.Sep(
         foreground=colours[2],
@@ -272,15 +283,13 @@ widgets = [
         fmt="墳 {}",
         update_interval=0.1,
         volume_app="pavucontrol",
-        step=5),
+        mouse_callbacks={'Button3': lambda: qtile.cmd_spawn("pavucontrol")},
+        step=5,
+        ),
     widget.Sep(
         foreground=colours[2],
         linewidth=1,
         padding=10),
-    # widget.Net(
-    #     foreground = colours[7],
-    #     format = "爵 {down}  ",
-    #     interface = "enp1s0"),
     widget.Battery(
         foreground=colours[7],
         format="{char} {percent:2.0%}",
@@ -306,13 +315,13 @@ widgets = [
 ]
 
 def status_bar(widget_list):
-  return bar.Bar(widget_list, 32, opacity=0.8)
+  return bar.Bar(widget_list, 32, opacity=0.9)
 
 screens = [
     Screen(
         top=status_bar(widgets),
-        wallpaper="~/Wallpapers/*",
-        wallpaper_mode="stretch"
+        wallpaper="~/Wallpapers/Andromeda Galaxy.jpg",
+        wallpaper_mode="stretch",
         ),
 ]
 
