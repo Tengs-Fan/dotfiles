@@ -243,19 +243,17 @@ widgets = [
         padding=10),
     widget.Net(
         foreground=colours[2],
-        format='爵 ↑{up} ↓{down}',
+        format='爵{up} {down} ',
         # mouse_callbacks={
         #     "Button1": lambda: qtile.cmd_spawn(MYTERM + " -e bpytop"),
         # },
+        #     interface = "enp1s0"),
         update_interval=1.0),
-    # widget.Net(
-    #     foreground = colours[7],
-    #     format = "爵 {down}  ",
-    #     interface = "enp1s0"),
     widget.Wlan(
-        foreground=colours[2],
-        format='🛜{essid}, {percent:2.0%}',
-        update_interval=1.0),
+        # foreground=colours[2],
+        # format='🛜{essid}, {percent:2.0%}',
+        # update_interval=1.0
+        ),
     widget.Sep(
         foreground=colours[2],
         linewidth=1,
