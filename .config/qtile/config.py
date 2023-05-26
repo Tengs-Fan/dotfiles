@@ -45,15 +45,15 @@ CYAN = '#5fb3b3'
 WHITE = '#ffffff'
 
 colours = [
-    ["#1f232900", "#1f232900"],  # Background
-    ["#dcdcdc00", "#dcdcdc00"],  # Foreground
-    ["#53596500", "#53596500"],  # Grey Colour
-    ["#e5556100", "#e5556100"],
-    ["#8ebd6b00", "#8ebd6b00"],
-    ["#e2b86b00", "#e2b86b00"],
-    ["#4fa6ed00", "#4fa6ed00"],
-    ["#bf68d900", "#bf68d900"],
-    ["#48b0bd00", "#48b0bd00"],
+    ["#1f2329", "#1f2329"],  # Background
+    ["#dcdcdc", "#dcdcdc"],  # Foreground
+    ["#535965", "#535965"],  # Grey Colour
+    ["#e55561", "#e55561"],
+    ["#8ebd6b", "#8ebd6b"],
+    ["#e2b86b", "#e2b86b"],
+    ["#4fa6ed", "#4fa6ed"],
+    ["#bf68d9", "#bf68d9"],
+    ["#48b0bd", "#48b0bd"],
 ]
 
 keys = [
