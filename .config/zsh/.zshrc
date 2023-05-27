@@ -10,34 +10,9 @@ export PATH=$HOME/.bin:$HOME/.local/bin:$PATH
 
 # User configuration
 export EDITOR='nvim'
-export NEMU_HOME=$HOME/Code/ics2020/nemu
-export AM_HOME=$HOME/Code/ics2020/abstract-machine
 
 # Alias
 source $HOME/.config/zsh/aliases
-# ======================================================================== #
-# OS Dependent
-# ======================================================================== #
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-if [ $(uname -s) = "Darwin" ]  
-then
-  ZSH_THEME="random"
-	test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
-fi
-
-if [ $(uname -s) = "Linux" ]  
-then
-	# Source manjaro-zsh-configuration
-	if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-	  source /usr/share/zsh/manjaro-zsh-config
-	fi
-	# Use manjaro zsh prompt
-	if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-	  source /usr/share/zsh/manjaro-zsh-prompt
-	fi
-fi
 
 # ======================================================================== #
 # Oh-my-zsh
