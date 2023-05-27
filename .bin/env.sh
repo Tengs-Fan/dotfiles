@@ -9,7 +9,7 @@ if [ "$os" = 'Darwin' ] ; then
     HOMEBREW_ROOT="/usr/local"
   fi
 else 
-  USER_ROOT="/home/penkwec"
+  USER_ROOT="/home/tengs"
   HOMEBREW_ROOT="/home/.linuxbrew"
 fi
 
@@ -76,10 +76,10 @@ function set-ruby() {
 }
 
 function set-fuchsia(){
-#	export PATH="$PATH:/Users/penkwe/Projects/fuchsia/.jiri_root/bin"
+#	export PATH="$PATH:/Users/tengs/Projects/fuchsia/.jiri_root/bin"
 #	[10:37:53.264] WARN: Please opt in or out of analytics collection. You will receive this warning until an option is selected.
 #	To check what data we collect run: jiri init -show-analytics-data
-#	To opt-in run: jiri init -analytics-opt=true "/Users/penkwe/Projects/fuchsia"
+#	To opt-in run: jiri init -analytics-opt=true "/Users/tengs/Projects/fuchsia"
 }
 
 function set-xilinx() {
