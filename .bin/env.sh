@@ -10,7 +10,7 @@ if [ "$os" = 'Darwin' ] ; then
   fi
 else 
   USER_ROOT="/home/tengs"
-  HOMEBREW_ROOT="/home/.linuxbrew"
+  HOMEBREW_ROOT="/home/linuxbrew/.linuxbrew"
 fi
 
 # ----- ----- Set Environment of Subsystem ----- ----- #
