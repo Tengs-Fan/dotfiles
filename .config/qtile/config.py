@@ -65,7 +65,7 @@ keys = [
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "d", lazy.spawn("dmenu_run"), desc="Application menu"),
-    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Rofi lunch"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle through layouts"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
@@ -74,6 +74,7 @@ keys = [
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     Key([mod, "shift"], "q", lazy.window.kill(), desc="Quit active window"),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen",),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
@@ -99,9 +100,9 @@ keys = [
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%"), desc="Decrease the volume"),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"), desc="Increase the volume"),
-    # Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
-    # Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
-    # Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -d intel_backlight set 10%+"), desc="Increase the brightness"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -d intel_backlight set 10%-"), desc="Decrease the brightness"),
 ]
@@ -152,8 +153,8 @@ layouts = [
 
 # DEFAULT WIDGET SETTINGS
 widget_defaults = dict(
-    font="SourceCodePro",
-    fontsize=20,
+    font="SauceCodePro Nerd Font",
+    fontsize=22,
     padding=2,
 )
 extension_defaults = widget_defaults.copy()
@@ -196,8 +197,12 @@ widgets = [
     widget.CurrentLayout(
         foreground=colours[7],
         font="SourceCodePro Bold"),
+    widget.Sep(
+        foreground=colours[2],
+        linewidth=1,
+        padding=10),
     widget.Systray(
-        icon_size=14,
+        icon_size=22,
         padding=4),
     widget.Cmus(
         noplay_color=colours[2],
@@ -221,7 +226,7 @@ widgets = [
         padding=10),
     widget.CPU(
         foreground=colours[3],
-        format=" {load_percent}%",
+        format=" {load_percent}%",
         mouse_callbacks={
             "Button1": lambda: qtile.cmd_spawn(MYTERM + " -e bpytop"),
         },
@@ -232,7 +237,7 @@ widgets = [
         padding=10),
     widget.Memory(
         foreground=colours[4],
-        format="﬙ {MemUsed:.0f} MB",
+        format=" {MemUsed:.0f} MB",
         mouse_callbacks={
             "Button1": lambda: qtile.cmd_spawn(MYTERM + " -e bpytop"),
         },
@@ -242,17 +247,17 @@ widgets = [
         linewidth=1,
         padding=10),
     widget.Net(
-        foreground=colours[2],
-        format='爵{up} {down} ',
+        foreground=colours[6],
+        format='🌐{up} {down} ',
         # mouse_callbacks={
         #     "Button1": lambda: qtile.cmd_spawn(MYTERM + " -e bpytop"),
         # },
         #     interface = "enp1s0"),
         update_interval=1.0),
     widget.Wlan(
-        # foreground=colours[2],
-        # format='🛜{essid}, {percent:2.0%}',
-        # update_interval=1.0
+        foreground=colours[6],
+        format='🛜{essid}, {percent:2.0%}',
+        update_interval=1.0
         ),
     widget.Sep(
         foreground=colours[2],
@@ -263,8 +268,8 @@ widgets = [
         colour_no_updates=colours[5],
         custom_command="checkupdates",
         # custom_command="dnf updateinfo -q --list",
-        display_format=" {updates} Updates",
-        no_update_string=" Up to date!",
+        display_format="📥 {updates} Updates",
+        no_update_string="📦 Up to date!",
         mouse_callbacks=({
             "Button1": lambda: qtile.cmd_spawn(os.path.expanduser(
                 "~/.config/scripts/update_system.sh")),
@@ -278,7 +283,7 @@ widgets = [
         padding=10),
     widget.PulseVolume(
         foreground=colours[6],
-        fmt="墳 {}",
+        fmt="🔊 {}",
         update_interval=0.1,
         volume_app="pavucontrol",
         mouse_callbacks={'Button3': lambda: qtile.cmd_spawn("pavucontrol")},
@@ -291,10 +296,10 @@ widgets = [
     widget.Battery(
         foreground=colours[7],
         format="{char} {percent:2.0%}",
-        charge_char=" ",
+        charge_char="  ",
         discharge_char=" ",
-        empty_char=" ",
-        full_char=" ",
+        empty_char="🪫 ",
+        full_char="🔋 ",
         unknown_char=" ",
         low_foreground=colours[3],
         low_percentage=0.15,
@@ -306,7 +311,7 @@ widgets = [
         padding=10),
     widget.Clock(
         foreground=colours[8],
-        format=" %a %b %d %I:%M %P  "),
+        format="📅 %a %b %d %I:%M %P  "),
     # widget.StockTicker(
     #     apikey="AESKWL5CJVHHJKR5",
     #     url="https://www.alphavantage.co/query?"),
