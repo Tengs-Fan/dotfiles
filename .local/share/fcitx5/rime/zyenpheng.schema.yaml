@@ -68,6 +68,17 @@ speller:
 translator:
   dictionary: zyenpheng
   spelling_hints: 8
+  preedit_format:
+    - "xform/(ng)/ŋ/"
+    - "xform/ph([aeiou])/pʰ$1/"
+    - "xform/kh([aeiou])/kʰ$1/"
+    - "xform/th([aeiou])/tʰ$1/"
+    - "xform/q([aeiou])/ʔ$1/"
+    - "xform/([aeiou])x/$1ʔ/"
+    - "xform/([aeiou])p/$1p̚/"
+    - "xform/([aeiou])k/$1k̚/"
+    - "xform/([aeiou])t/$1t̚/"
+    - "xform/([a])d$/$1ç/"
 
 reverse_lookup:
   dictionary: luna_pinyin
