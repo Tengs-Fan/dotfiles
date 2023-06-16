@@ -38,7 +38,8 @@
     "network": {
       "tooltip": false,
       "format-wifi": " {essid}",
-      "format-ethernet": "wired"
+      "format-ethernet": "wired",
+      "on-click": "kitty nmtui"
     },
     "backlight": {
       "tooltip": false,
