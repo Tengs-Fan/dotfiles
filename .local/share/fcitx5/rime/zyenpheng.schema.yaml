@@ -70,11 +70,24 @@ translator:
   spelling_hints: 8
   preedit_format:
     - "xform/(ng)/ŋ/"
-    - "xform/ph([aeiou])/pʰ$1/"
-    - "xform/kh([aeiou])/kʰ$1/"
-    - "xform/th([aeiou])/tʰ$1/"
-    - "xform/q([aeiou])/ʔ$1/"
-    - "xform/([aeiou])x/$1ʔ/"
+    - "xform/c([aeiou])/t͡s$1/"
+    - "xform/ch([aeiou])/t͡sʰ$1/"
+    - "xform/cr([aeiou])/t͡ʂ$1/"
+    - "xform/chr([aeiou])/t͡ʂʰ$1/"
+    - "xform/cj([aeiou])/t͡ɕ$1/"
+    - "xform/chj([aeiou])/t͡ɕʰ$1/"
+    - "xform/zr([aeiou])/d͡ʐ$1/"
+    - "xform/zj([aeiou])/d͡ʑ$1/"
+    - "xform/zs([aeiou])/z$1/"
+    - "xform/zsj([aeiou])/ʑ$1/"
+    - "xform/z([aeiou])/d͡z$1/"
+    - "xform/zr([aeiou])/d͡ʐ$1/"
+    - "xform/zj([aeiou])/d͡ʑ$1/"
+    - "xform/ph([raeiou])/pʰ$1/"
+    - "xform/kh([raeiou])/kʰʔ$1/"
+    - "xform/th([raeiou])/tʰ$1/"
+    - "xform/q([raeiou])/ʔ$1/"
+    - "xform/([aeiounŋ])x/$1ʔ/"
     - "xform/([aeiou])p/$1p̚/"
     - "xform/([aeiou])k/$1k̚/"
     - "xform/([aeiou])t/$1t̚/"
@@ -100,3 +113,4 @@ recognizer:
   import_preset: default
   patterns:
     reverse_lookup: "`[a-z]*'?$"
+
