@@ -70,6 +70,8 @@ translator:
   spelling_hints: 8
   preedit_format:
     - "xform/(ng)/ŋ/"
+    - "xform/sr([aeiou])/ʂ$1/"
+    - "xform/sj([aeiou])/ɕ$1/"
     - "xform/c([aeiou])/t͡s$1/"
     - "xform/ch([aeiou])/t͡sʰ$1/"
     - "xform/cr([aeiou])/t͡ʂ$1/"
@@ -84,8 +86,11 @@ translator:
     - "xform/zr([aeiou])/d͡ʐ$1/"
     - "xform/zj([aeiou])/d͡ʑ$1/"
     - "xform/ph([raeiou])/pʰ$1/"
-    - "xform/kh([raeiou])/kʰʔ$1/"
+    - "xform/kh([raeiou])/kʰ$1/"
     - "xform/th([raeiou])/tʰ$1/"
+    - "xform/thr([raeiou])/ʈʰ$1/"
+    - "xform/tr([raeiou])/ʈ$1/"
+    - "xform/dr([raeiou])/ɖ$1/"
     - "xform/q([raeiou])/ʔ$1/"
     - "xform/([aeiounŋ])x/$1ʔ/"
     - "xform/([aeiou])p/$1p̚/"
