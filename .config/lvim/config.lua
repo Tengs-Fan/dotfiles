@@ -189,6 +189,11 @@ lvim.plugins = {
         trigger_events = {"TextChanged", "TextChangedI"},
       }
     end,
+  },
+  {
+    "kaarmu/typst.vim",
+    ft = 'typst',
+    lazy=false,
   }
 }
 
