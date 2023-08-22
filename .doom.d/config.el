@@ -78,4 +78,4 @@
 
 (setq initial-frame-alist
       (append initial-frame-alist
-              '((left . 100) (top . 0) (width . 100) (height . 800))))
+              '((left . 100) (top . 0) (width . 100) (height . 50))))
