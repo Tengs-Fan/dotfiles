@@ -181,6 +181,11 @@ lvim.plugins = {
   {
     "ryvnf/readline.vim"
   },
+  {
+    "kaarmu/typst.vim",
+    ft = 'typst',
+    lazy=false,
+  }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
