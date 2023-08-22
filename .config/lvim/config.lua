@@ -181,6 +181,14 @@ lvim.plugins = {
   {
     "ryvnf/readline.vim"
   },
+  {
+    "pocco81/auto-save.nvim",
+    -- config = function()
+    --   require("auto-save").setup({
+    --     trigger_events = {"TextChanged", "TextChangedI"},
+    --   })
+    -- end,
+  }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
