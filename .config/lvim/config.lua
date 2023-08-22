@@ -182,14 +182,17 @@ lvim.plugins = {
     "ryvnf/readline.vim"
   },
   {
-    "pocco81/auto-save.nvim",
-    -- config = function()
-    --   require("auto-save").setup({
-    --     trigger_events = {"TextChanged", "TextChangedI"},
-    --   })
-    -- end,
+    "Pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup{
+        enabled = false,
+        trigger_events = {"TextChanged", "TextChangedI"},
+      }
+    end,
   }
 }
+
+lvim.builtin.which_key.mappings["S"] = { "<cmd>ASToggle<CR>", "Toggle auto-save" }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
