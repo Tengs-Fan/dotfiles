@@ -96,6 +96,10 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
 
+-- Folding
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
 -- generic LSP settings
 vim.cmd 'autocmd BufRead,BufNewFile *.pl set filetype=prolog'
 require('lspconfig').prolog_ls.setup{}
@@ -187,7 +191,7 @@ lvim.plugins = {
     config = function()
       require("auto-save").setup{
         enabled = false,
-        trigger_events = {"TextChanged", "TextChangedI"},
+        -- trigger_events = {"TextChanged", "TextChangedI"},
       }
     end,
   },
@@ -195,7 +199,20 @@ lvim.plugins = {
     "kaarmu/typst.vim",
     ft = 'typst',
     lazy=false,
-  }
+  },
+-- Debugging
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("lvim.core.dap").setup()
+    end,
+    lazy = true,
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+      "williamboman/mason-lspconfig.nvim",
+    },
+    enabled = lvim.builtin.dap.active,
+  },
 }
 
 lvim.builtin.which_key.mappings["S"] = { "<cmd>ASToggle<CR>", "Toggle auto-save" }
