@@ -63,9 +63,15 @@ function set-cuda() {
 }
 
 function set-llvm(){
-	export PATH="$HOMEBREW_ROOT/opt/llvm/bin:$PATH"
-	export LDFLAGS="-L$HOMEBREW_ROOT/opt/llvm/lib -Wl,-rpath,$HOMEBREW_ROOT/opt/llvm/lib $LDFLAGS"
-	export CPPFLAGS="-I$HOMEBREW_ROOT/opt/llvm/include $CPPFLAGS"
+    if [ -z "$1" ]; then
+        export PATH="$HOMEBREW_ROOT/opt/llvm/bin:$PATH"
+        export LDFLAGS="-L$HOMEBREW_ROOT/opt/llvm/lib -Wl,-rpath,$HOMEBREW_ROOT/opt/llvm/lib $LDFLAGS"
+        export CPPFLAGS="-I$HOMEBREW_ROOT/opt/llvm/include $CPPFLAGS"
+    else
+        export PATH="$HOMEBREW_ROOT/opt/llvm@$1/bin:$PATH"
+        export LDFLAGS="-L$HOMEBREW_ROOT/opt/llvm@$1/lib -Wl,-rpath,$HOMEBREW_ROOT/opt/llvm@$1/lib $LDFLAGS"
+        export CPPFLAGS="-I$HOMEBREW_ROOT/opt/llvm@$1/include $CPPFLAGS"
+    fi
 }
 
 function set-ruby() {
