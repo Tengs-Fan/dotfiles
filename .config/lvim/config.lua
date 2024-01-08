@@ -15,14 +15,16 @@ lvim.colorscheme = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
+vim.opt.shiftwidth = 4
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["|"] = ":vsplit<cr>"
 lvim.keys.normal_mode["_"] = ":split<cr>"
-lvim.keys.normal_mode["<Tab>"] = ":bnext<cr>"
-lvim.keys.normal_mode["<S-Tab>"] = ":bprev<cr>"
+lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<cr>"
+lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<cr>"
 lvim.keys.insert_mode["<C-s>"] = "<esc>:w<cr>a"
 lvim.keys.insert_mode["<C-f>"] = "<Right>"
 lvim.keys.insert_mode["<C-b>"] = "<Left>"
@@ -69,6 +71,9 @@ lvim.builtin.which_key.mappings["t"] = {
   t = { "<cmd>TroubleClose <cr>", "Close Diagnostics"}
 }
 
+lvim.builtin.which_key.mappings.b["j"] = { "<cmd>BufferLineMovePrev<cr>", "Move this buffer to before" }
+lvim.builtin.which_key.mappings.b["k"] = { "<cmd>BufferLineMoveNext<cr>", "Move this buffer to next" }
+
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
@@ -95,10 +100,6 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
-
--- Folding
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- generic LSP settings
 vim.cmd 'autocmd BufRead,BufNewFile *.pl set filetype=prolog'
@@ -213,9 +214,145 @@ lvim.plugins = {
     },
     enabled = lvim.builtin.dap.active,
   },
+  {
+    "kevinhwang91/nvim-ufo",
+    config = function ()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+      }
+      local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+      for _, ls in ipairs(language_servers) do
+        require('lspconfig')[ls].setup({
+          capabilities = capabilities
+          -- you can add other fields for setting up lsp server in this table
+        })
+      end
+      require('ufo').setup()
+    end,
+    dependencies = {
+      "kevinhwang91/promise-async"
+    }
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  }
 }
 
+local ok, copilot = pcall(require, "copilot")
+if not ok then
+  return
+end
+
+copilot.setup {
+  suggestion = {
+    keymap = {
+      accept = "<c-l>",
+      next = "<c-j>",
+      prev = "<c-k>",
+      dismiss = "<c-h>",
+    },
+  },
+}
+
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<c-s>", "<cmd>lua require('copilot.suggestion').toggle_auto_trigger()<CR>", opts)
+
 lvim.builtin.which_key.mappings["S"] = { "<cmd>ASToggle<CR>", "Toggle auto-save" }
+
+local dap = require('dap')
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/opt/homebrew/opt/llvm/bin/lldb-vscode', -- adjust as needed, must be absolute path
+  name = 'lldb'
+}
+dap.configurations.cpp = {
+  {
+    name = 'Launch',
+    type = 'lldb',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+    runInTerminal = true,
+  },
+}
+
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
+
+
+-- Folding
+vim.o.foldenable = true
+vim.o.foldcolumn = '0' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+-- vim.wo.foldmethod = 'expr'
+-- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
+vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+-- vim.keymap.set('n', 'K', function()
+--     local winid = require('ufo').peekFoldedLinesUnderCursor()
+--     if not winid then
+--         -- choose one of coc.nvim and nvim lsp
+--         vim.fn.CocActionAsync('definitionHover') -- coc.nvim
+--         vim.lsp.buf.hover()
+--     end
+-- end)
+
+-- lvim.builtin.which_key.mappings["B"] = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Toggle Breakpoint"}
+-- lvim.builtin.which_key.mappings["b"] = {
+--   name = "+Trouble",
+--   r = { "<cmd>Trouble lsp_references<cr>", "References" },
+--   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+--   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+--   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+--   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+--   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+--   t = { "<cmd>TroubleClose <cr>", "Close Diagnostics"}
+-- }
+
+-- lvim.builtin.dap.keymap = {
+--   n = {
+--     ["<F5>"] = function() require('dap').continue() end,
+--     ["<F10>"] = function() require('dap').step_over() end,
+--     ["<F11>"] = function() require('dap').step_into() end,
+--     ["<F12>"] = function() require('dap').step_out() end
+  --   ["<Leader>b"] = function() require('dap').toggle_breakpoint() end,
+  --   ["<Leader>B"] = function() require('dap').set_breakpoint() end,
+  --   ["<Leader>lp"] = function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+  --   ["<Leader>dr"] = function() require('dap').repl.open() end,
+  --   ["<Leader>dl"] = function() require('dap').run_last() end,
+  --   ["<Leader>df"] = function() 
+  --     local widgets = require('dap.ui.widgets')
+  --     widgets.centered_float(widgets.frames)
+  --   end,
+  --   ["<Leader>ds"] = function() 
+  --     local widgets = require('dap.ui.widgets')
+  --     widgets.centered_float(widgets.scopes)
+  --   end
+  -- },
+  -- v = {
+  --   ["<Leader>dh"] = function() require('dap.ui.widgets').hover() end,
+  --   ["<Leader>dp"] = function() require('dap.ui.widgets').preview() end
+--   }
+-- }
+
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
