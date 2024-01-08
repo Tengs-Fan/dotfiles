@@ -54,6 +54,10 @@ function set-deno() {
 	export PATH="$USER_ROOT/.deno/bin:$PATH"
 }
 
+function set-coursier() {
+    export PATH="$USER_ROOT/Library/Application Support/Coursier/bin:$PATH"
+}
+
 # ----- ----- path & config of appplication ----- ----- #
 function set-cuda() {
 	export PATH="/opt/cuda/bin:$PATH";
