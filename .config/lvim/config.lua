@@ -246,8 +246,15 @@ lvim.plugins = {
     config = function()
       require("copilot_cmp").setup()
     end,
+  },
+  {
+    "scalameta/nvim-metals",
+    config = function()
+      require("user.metals").config()
+    end,
   }
 }
+
 
 local ok, copilot = pcall(require, "copilot")
 if not ok then
@@ -294,6 +301,24 @@ dap.configurations.cpp = {
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
+dap.configurations.scala = {
+  {
+    type = "scala",
+    request = "launch",
+    name = "Run or Test Target",
+    metals = {
+      runType = "runOrTestFile",
+    },
+  },
+  {
+    type = "scala",
+    request = "launch",
+    name = "Test Target",
+    metals = {
+      runType = "testTarget",
+    },
+  },
+}
 
 -- Folding
 vim.o.foldenable = true
