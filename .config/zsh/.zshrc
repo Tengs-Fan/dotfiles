@@ -5,6 +5,8 @@
 set-rust
 set-brew
 set-haskell
+set-llvm
+set-coursier
 
 export PATH=$HOME/.bin:$HOME/.local/bin:$PATH
 
