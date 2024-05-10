@@ -2,44 +2,49 @@
 os=$(uname)
 arch=$(uname -m)        
 if [ "$os" = 'Darwin' ] ; then
-  USER_ROOT="/Users/tengs"
-  if [ "$arch" = 'arm64' ]; then 
-    HOMEBREW_ROOT="/opt/homebrew"
-  else
-    HOMEBREW_ROOT="/usr/local"
-  fi
+    USER_ROOT="/Users/tengs"
+    if [ "$arch" = 'arm64' ]; then 
+        HOMEBREW_ROOT="/opt/homebrew"
+    else
+        HOMEBREW_ROOT="/usr/local"
+    fi
 else 
-  USER_ROOT="/home/tengs"
-  HOMEBREW_ROOT="/home/linuxbrew/.linuxbrew"
+    USER_ROOT="/home/tengs"
+    HOMEBREW_ROOT="/home/linuxbrew/.linuxbrew"
 fi
 
 # ----- ----- Set Environment of Subsystem ----- ----- #
 function set-brew(){
-  export PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
-  eval $(brew shellenv)    
+    export PATH="$HOMEBREW_ROOT/bin:$HOMEBREW_ROOT/sbin:$PATH"
+    eval $(brew shellenv)    
 
 	# alias abrew="arch -arm64 $HOMEBREW_ROOT/bin/brew"  # ARM Homebrew
 	# alias ibrew="arch -x86_64 /usr/local/bin/brew" # X86 Homebrew
 
-	export LDFLAGS="-L$HOMEBREW_ROOT/lib $LDFLAGS"
-	export CPPFLAGS="-I$HOMEBREW_ROOT/include $CPPFLAGS"
+    export LDFLAGS="-L$HOMEBREW_ROOT/lib $LDFLAGS"
+    export CPPFLAGS="-I$HOMEBREW_ROOT/include $CPPFLAGS"
 }
 
 function set-conda(){
-  # >>> conda initialize >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('$USER_ROOT/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  else
-    if [ -f "$USER_ROOT/miniconda3/etc/profile.d/conda.sh" ]; then
-      . "$USER_ROOT/miniconda3/etc/profile.d/conda.sh"
-    else
-      export PATH="$USER_ROOT/miniconda3/bin:$PATH"
+    if [ "$os" = 'Darwin' ] ; then
+        CONDA_ROOT="/opt/homebrew/Caskroom/miniconda/base/"
+    else 
+        CONDA_ROOT="$USER_ROOT/miniconda3/"
     fi
-  fi
-  unset __conda_setup
-  # <<< conda initialize <<<
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('$CONDA_ROOT/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "$CONDA_ROOT/etc/profile.d/conda.sh" ]; then
+              . "$CONDA_ROOT/etc/profile.d/conda.sh"
+        else
+              export PATH="'$CONDA_ROOT/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
 }
 
 function set-rust(){
