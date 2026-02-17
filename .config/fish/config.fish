@@ -13,3 +13,4 @@ if status is-interactive
 	set-brew
 	zoxide init fish | source
 end
+
