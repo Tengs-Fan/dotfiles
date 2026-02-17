@@ -7,6 +7,7 @@ set-brew
 set-haskell
 set-llvm
 set-coursier
+set-nvm
 
 export PATH=$HOME/.bin:$HOME/.local/bin:$PATH
 
