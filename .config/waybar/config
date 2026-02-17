@@ -29,7 +29,7 @@
       "format": "<b>{}</b>",
       "max-length": 50
     },
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
       "format": "{icon}",
       "on-click": "activate",
       "on-scroll-up": "hyprctl dispatch workspace e+1",
