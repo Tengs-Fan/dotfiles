@@ -62,3 +62,5 @@ set-conda && conda activate base && python -m pytest path/to/tests -v
 
 - macOS with Apple Silicon (arm64)
 - Homebrew at `/opt/homebrew`
+
+# Do Not add `Co-Authored-By` in the end of your output
