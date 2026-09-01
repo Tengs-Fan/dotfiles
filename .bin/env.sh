@@ -45,6 +45,7 @@ function set-conda(){
     fi
     unset __conda_setup
     # <<< conda initialize <<<
+    conda activate base
 }
 
 function set-rust(){
