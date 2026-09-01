@@ -108,3 +108,6 @@ bindkey "^N" down-line-or-search
 # Shells=(elvish nu xonsh oil)
 # choice=$((RANDOM % 4))+1
 # ${Shells[choice]}
+
+# For Codex to have mutliple subagents
+ulimit -n 8192
